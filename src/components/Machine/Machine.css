@@ -162,3 +162,16 @@ input::-webkit-inner-spin-button {
 .imageBg{
     height: 10em;
 }
+.form-check{
+    padding-left: 1em;
+}
+
+.alert{
+    font-size: 12px;
+    padding: 0;
+    position: absolute;
+    width: 164px;
+    color: #ce2020;
+    margin-top: 20px;
+    --bs-alert-border: none;
+}
