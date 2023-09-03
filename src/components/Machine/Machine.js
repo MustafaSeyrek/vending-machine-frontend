@@ -88,9 +88,23 @@ export default function Machine() {
   };
 
   //order process
-  const handleOrder = () => {
+  const handleOrder = async () => {
     if (selectedProduct != "0") {
-      setError(null);
+      try {
+        const result = await axios.post(
+          "http://localhost:8080/api/machine/selling",
+          {
+            machineId: 1,
+            productId: +selectedProduct,
+            paidPrice: +total,
+          }
+        );
+        if (result.data.change > 0) setError("Your money of " + result.data.change + "₺ has been refunded!");
+        setTotal(0);
+        setChange(result.data.change);
+      } catch (e) {
+        setError(e.response.data);
+      }
     } else {
       setError("Please select a product!");
     }
