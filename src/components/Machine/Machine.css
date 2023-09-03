@@ -1,0 +1,164 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: skyblue;
+    height: 100vh;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.machine {
+    background-color: #ce2020;
+    width: 35em;
+    height: 43em;
+    padding: 1.5em;
+    margin: auto;
+    position: relative;
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    grid-template-areas: "items order" "grab grab";
+    border-radius: 15px;
+}
+
+.shelf {
+    background-color: rgb(100, 108, 119);
+    width: 59%;
+    height: 5em;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+}
+
+#water {
+    top: 100px;
+}
+
+#coke {
+    top: 200px;
+}
+
+#soda {
+    top: 300px;
+}
+
+.items {
+    background-color: rgb(192, 192, 192);
+    grid-area: "items";
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0.5em;
+    border-radius: 10px;
+}
+
+.order {
+    background-color: rgb(100, 108, 119);
+    grid-area: "order";
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    grid-template-areas: "container";
+    border-radius: 5px;
+
+}
+
+.container {
+    width: 85%;
+    margin: auto;
+    margin-top: 5em;
+    grid-area: "container";
+}
+
+.priceEnter {
+    background-color: rgb(79, 192, 232);
+    width: 100%;
+    height: 2em;
+    border-radius: 30px;
+}
+
+input {
+    box-shadow: inset 0 0 10px #000000;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.process{
+    display: flex;
+    align-items: center;
+}
+
+.price {
+    background-color: rgb(169, 177, 188);
+    width: 5em;
+    height: 5em;
+    margin: 1em auto;
+}
+
+.circle {
+    background-color: rgb(66, 73, 83);
+    width: 30px;
+    height: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin: auto;
+}
+
+.result {
+    background-color: rgb(100, 108, 119);
+    height: 10em;
+    border-radius: 10px;
+    grid-area: "grab";
+}
+
+.rectangle {
+    background-color: rgb(169, 177, 188);
+    width: 80%;
+    height: 3em;
+    margin: 3em auto;
+    border-radius: 15px;
+}
+.buttons {
+    margin: 1em auto;
+}
+.addBtn{
+    background-color: rgb(79, 192, 232);
+    width: 50%;
+    border-radius: 20%;
+}
+
+.orderBtn{
+    background-color: green;
+    width: 50%;
+    border-radius: 20%;
+}
+
+.cancelBtn{
+    background-color: #ff0000a1;
+    width: 50%;
+    border-radius: 20%;
+}
+
+.leg{
+    display: flex;
+    justify-content: space-around;
+}
+
+.foot{
+    background-color:rgb(100, 108, 119);
+    width: 3em;
+    height: 3em;
+}
+.imageBg{
+    height: 10em;
+}
