@@ -13,6 +13,8 @@ export default function Machine() {
   var productImgArr = []; //for dynamic product images
   let accepted = ["1", "5", "10", "20"];
   const inputRef = useRef(null);
+  const [src, setSrc] = useState("");
+  const [productName, setProductName] = useState("");
 
   useEffect(() => {
     getProducts();
@@ -37,6 +39,10 @@ export default function Machine() {
   //for selected product radio button event
   const handleChange = (event) => {
     setSelectedProduct(event.target.value);
+    //for selling product image
+    let productName =
+      event.target.attributes.customattribute.nodeValue.toLowerCase();
+    setProductName(productName);
   };
 
   //keep entered money
@@ -99,15 +105,29 @@ export default function Machine() {
             paidPrice: +total,
           }
         );
-        if (result.data.change > 0) setError("Your money of " + result.data.change + "₺ has been refunded!");
+        if (result.data.change > 0)
+          setError(
+            "Your money of " + result.data.change + "₺ has been refunded!"
+          );
         setTotal(0);
         setChange(result.data.change);
+        setSrc("/images/" + productName + ".png");
       } catch (e) {
         setError(e.response.data);
+        setChange(total);
       }
     } else {
       setError("Please select a product!");
     }
+  };
+
+  //get product
+  const handleGet = () => {
+    setSrc("");
+  };
+
+  const handleGetRefund = () => {
+    setChange(0);
   };
 
   return (
@@ -163,6 +183,7 @@ export default function Machine() {
                     disabled={product.stock < 1 ? true : false}
                     onChange={handleChange}
                     value={product.id}
+                    {...{ customattribute: product.name }}
                   />
                   <label className="form-check-label" htmlFor={product.id}>
                     {product.name}
@@ -179,12 +200,21 @@ export default function Machine() {
           <div className="change">
             <div className="price">
               <div className="circle"></div>
+              <small>Refund: {change}₺</small>
+              <button onClick={handleGetRefund} className="btnGetRefund">
+                Get
+              </button>
             </div>
           </div>
         </div>
 
         <div className="result">
-          <div className="rectangle"></div>
+          <button onClick={() => handleGet()} className="btnGet">
+            Get
+          </button>
+          <div className="rectangle">
+            <img className="imageSelling" src={src} alt=""></img>
+          </div>
         </div>
         <div className="bg">
           <img className="imageBg" src="/images/bg.png" alt=""></img>

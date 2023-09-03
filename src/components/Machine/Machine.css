@@ -143,6 +143,22 @@ input::-webkit-inner-spin-button {
     border-radius: 20%;
 }
 
+.btnGet{
+    background-color: green;
+    width: 20%;
+    border-radius: 20%;
+    margin-top: 100px;
+    position: absolute;
+    margin-left: -60px;
+}
+.btnGetRefund{
+    background-color: green;
+    width: 60%;
+    border-radius: 20%;
+    font-size: 14px;
+    height: 30%;
+}
+
 .cancelBtn{
     background-color: #ff0000a1;
     width: 50%;
@@ -174,4 +190,10 @@ input::-webkit-inner-spin-button {
     color: #ce2020;
     margin-top: 20px;
     --bs-alert-border: none;
+}
+
+.imageSelling{
+    transform: rotate(90deg);
+    height: 5em;
+    margin-top: -16px;
 }
