@@ -201,17 +201,17 @@ input::-webkit-inner-spin-button {
 .imageAnimate{
     height: 5em;
     position: absolute;
-    animation: mymove 1s ;
+    animation: mymove 0.6s;
     opacity:0;
     animation-timing-function: linear;
     left:173px
 }
 
 @keyframes mymove {  
-    0%   {top: 150px; top: 250px; opacity: 0.5}
-    25%  {top: 250px; top: 350px; opacity: 0.9}
-    50%  {top: 350px; top: 400px; opacity: 0.7}
-    75%  {top: 400px; top: 450px; opacity: 0.1}
-    100% {top: 450px; top: 450px; opacity: 0}
+    0%   {top: 150px; top: 250px; opacity: 0.5;}
+    25%  {top: 250px; top: 350px; opacity: 0.9; transform:rotate(30deg);}
+    50%  {top: 350px; top: 400px; opacity: 0.7; transform:rotate(60deg);}
+    75%  {top: 400px; top: 450px; opacity: 0.2; transform:rotate(90deg);}
+    100% {top: 450px; top: 450px; opacity: 0.1; transform:rotate(90deg);}
   }
 

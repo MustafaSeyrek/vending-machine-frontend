@@ -1,0 +1,28 @@
+.cards{
+    display: flex;
+    flex-direction: row;
+}
+
+.card{
+    width: 18rem;
+    margin-right: 5%;
+}
+.card-img-top{
+    width: 3em;
+    margin-left: 40%;
+    margin-top: 5%;
+}
+
+.machine-admin{
+    display: flex;
+    justify-content: space-evenly
+}
+.cardMachine{
+    margin-bottom: 5%;
+    width: 20rem;
+}
+.buttonsForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

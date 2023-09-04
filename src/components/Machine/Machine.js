@@ -3,10 +3,8 @@ import axios from "axios";
 import "./Machine.css";
 export default function Machine() {
   const [products, setProducts] = useState([]);
-  const [machine, setMachine] = useState([]);
   const [error, setError] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(0);
-  const [totalEntered, setTotalEntered] = useState([]); //keep total money
   const [entered, setEntered] = useState(0);
   const [total, setTotal] = useState(0);
   const [change, setChange] = useState(0);
@@ -18,22 +16,12 @@ export default function Machine() {
 
   useEffect(() => {
     getProducts();
-    getMachine();
   }, []);
 
   //axios requests from backend
   const getProducts = async () => {
     var result = await axios.get("http://localhost:8080/api/products");
     setProducts(result.data);
-  };
-
-  const getMachine = async () => {
-    try {
-      var result = await axios.get("http://localhost:8080/api/machine/1");
-      setMachine(result.data);
-    } catch (e) {
-      setError(e.response.data);
-    }
   };
 
   //for selected product radio button event
@@ -73,7 +61,6 @@ export default function Machine() {
   const addMoneyClick = () => {
     if (accepted.includes(entered)) {
       //money control
-      setTotalEntered((current) => [...current, entered]);
       setError(null);
       inputRef.current.value = null;
       setTotal(+total + +entered); //for sum with string
@@ -87,7 +74,6 @@ export default function Machine() {
   const handleCancel = () => {
     setChange(total);
     inputRef.current.value = null;
-    setTotalEntered([]);
     if (total > 0) setError("Your money of " + total + "₺ has been refunded!");
     setTotal(0);
     setEntered(0);
