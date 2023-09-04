@@ -114,6 +114,7 @@ export default function Machine() {
 
   const handleGetRefund = () => {
     setChange(0);
+    setTotal(0);
   };
 
   return (

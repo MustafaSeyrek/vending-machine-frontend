@@ -47,20 +47,31 @@ export default function Admin() {
   const collectMoney = async () => {
     moneyRef.current.value = 0;
 
-    await axios.put("http://localhost:8080/api/machine/1", { totalPrice: 0 });
+    await axios.put("http://localhost:8080/api/machine/1", {
+      totalPrice: 0,
+      coolingDate: dateRef.current.value,
+    });
   };
 
   //chech machine
   const check = async () => {
-   
     var currentdate = new Date();
-    var datetime =currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/" 
-                + currentdate.getFullYear() + " "  
-                + currentdate.getHours() + ":"  
-                + currentdate.getMinutes();
-   dateRef.current.value = datetime;
-    await axios.put("http://localhost:8080/api/machine/1", { coolingDate: datetime });
+    var datetime =
+      currentdate.getDate() +
+      "/" +
+      (currentdate.getMonth() + 1) +
+      "/" +
+      currentdate.getFullYear() +
+      " " +
+      currentdate.getHours() +
+      ":" +
+      (currentdate.getMinutes() < 10 ? "0" : "") +
+      currentdate.getMinutes();
+    dateRef.current.value = datetime;
+    await axios.put("http://localhost:8080/api/machine/1", {
+      totalPrice: moneyRef.current.value,
+      coolingDate: datetime,
+    });
   };
 
   return (
@@ -85,7 +96,9 @@ export default function Admin() {
                       type="text"
                       className="form-control"
                       name="cooling"
-                      value={machine.coolingDate == null ? "-" : machine.coolingDate}
+                      value={
+                        machine.coolingDate == null ? "-" : machine.coolingDate
+                      }
                       readOnly
                       ref={dateRef}
                     ></input>
@@ -93,14 +106,14 @@ export default function Admin() {
                 </div>
 
                 <div className="form-group row mb-2">
-                  <label htmlFor="price" className="col-sm-5 col-form-label">
+                  <label htmlFor="priceT" className="col-sm-5 col-form-label">
                     Total Price (₺):
                   </label>
                   <div className="col-sm-7">
                     <input
                       type="text"
                       className="form-control"
-                      name="price"
+                      name="priceT"
                       value={machine.totalPrice}
                       readOnly
                       ref={moneyRef}
@@ -108,7 +121,11 @@ export default function Admin() {
                   </div>
                 </div>
                 <div className="buttonsForm">
-                  <button type="button" className="btn btn-outline-primary" onClick={check}>
+                  <button
+                    type="button"
+                    className="btn btn-outline-primary"
+                    onClick={check}
+                  >
                     Check
                   </button>
 
