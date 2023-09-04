@@ -133,6 +133,7 @@ export default function Machine() {
   return (
     <div>
       <div className="machine">
+        {src != "" ? <img className="imageAnimate" src={src} alt=""></img> : ""}
         <div className="items">
           {products.map((product, index) => (
             <div className="shelf" id={product.name.toLowerCase()}>
