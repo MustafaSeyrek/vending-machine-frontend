@@ -2,6 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import "./Admin.css";
 export default function Admin() {
+  let url =
+    "https://vending-machine-backend-git-konyaizmir111-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/api";
+  //http://localhost:8080/api/
   const [products, setProducts] = useState([]);
   const [machine, setMachine] = useState([]);
   const [error, setError] = useState(null);
@@ -19,13 +22,13 @@ export default function Admin() {
 
   //axios requests from backend
   const getProducts = async () => {
-    var result = await axios.get("http://localhost:8080/api/products");
+    var result = await axios.get(url + "/products");
     setProducts(result.data);
   };
 
   const getMachine = async () => {
     try {
-      var result = await axios.get("http://localhost:8080/api/machine/1");
+      var result = await axios.get(url + "/machine/1");
       setMachine(result.data);
     } catch (e) {
       setError(e.response.data);
@@ -35,7 +38,7 @@ export default function Admin() {
   //update product
   const updateProduct = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8080/api/products/${productId}`, product);
+    await axios.put(`${url}/products/${productId}`, product);
   };
 
   const onInputChange = (e) => {
@@ -47,7 +50,7 @@ export default function Admin() {
   const collectMoney = async () => {
     moneyRef.current.value = 0;
 
-    await axios.put("http://localhost:8080/api/machine/1", {
+    await axios.put(url + "/machine/1", {
       totalPrice: 0,
       coolingDate: dateRef.current.value,
     });
@@ -68,7 +71,7 @@ export default function Admin() {
       (currentdate.getMinutes() < 10 ? "0" : "") +
       currentdate.getMinutes();
     dateRef.current.value = datetime;
-    await axios.put("http://localhost:8080/api/machine/1", {
+    await axios.put(url + "/machine/1", {
       totalPrice: moneyRef.current.value,
       coolingDate: datetime,
     });

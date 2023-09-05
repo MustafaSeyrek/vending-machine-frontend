@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./Machine.css";
 export default function Machine() {
+  let url =
+    "https://vending-machine-backend-git-konyaizmir111-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/api";
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(0);
@@ -20,7 +22,7 @@ export default function Machine() {
 
   //axios requests from backend
   const getProducts = async () => {
-    var result = await axios.get("http://localhost:8080/api/products");
+    var result = await axios.get(url+"/products");
     setProducts(result.data);
   };
 
@@ -84,7 +86,7 @@ export default function Machine() {
     if (selectedProduct != "0") {
       try {
         const result = await axios.post(
-          "http://localhost:8080/api/machine/selling",
+          url+"/machine/selling",
           {
             machineId: 1,
             productId: +selectedProduct,
